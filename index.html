@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DentCadde — Dr. Aslıhan Yıldırım Türkmen Diş Estetiği ve Ortodonti Kliniği</title>
+<meta name="description" content="Bağdat Caddesi Feneryolu'nda Dr. Aslıhan Yıldırım Türkmen Diş Estetiği ve Ortodonti Kliniği: ortodonti, şeffaf plak (Invisalign), gülüş tasarımı, implant ve tüm ağız diş sağlığı tedavileri.">
+<meta name="robots" content="noindex, nofollow"><!-- önizleme: canlıya alınırken kaldırılacak -->
+<meta name="theme-color" content="#F5F2EC">
+<link rel="icon" href="img/logo-isaret.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Manrope:wght@400;500;600;700&family=Saira+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --krem:#F5F2EC; --kagit:#FBFAF7; --murekkep:#151614; --gri:#5C5F59; --soluk:#8C8F87;
+  --cizgi:#E2DDD2; --yesil:#8DAE3F; --yesil-koyu:#56701C; --yesil-acik:#EEF3E0; --ahsap:#9A6240;
+  --koyu:#171916; --koyu-2:#22251F;
+  --serif:"Fraunces", Georgia, serif; --sans:"Manrope", system-ui, -apple-system, sans-serif;
+  --etiket:"Saira Condensed", "Arial Narrow", sans-serif;
+  --r:22px; --gecis:cubic-bezier(.2,.7,.2,1);
+  --kenar:clamp(16px,4vw,56px); --en:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--krem);color:var(--murekkep);font:400 16.5px/1.65 var(--sans);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+::selection{background:var(--yesil);color:#fff}
+.kap{width:min(var(--en),100% - 2*var(--kenar));margin-inline:auto}
+.etiket{font:600 13px/1 var(--etiket);letter-spacing:.32em;text-transform:uppercase;color:var(--yesil-koyu);display:inline-flex;align-items:center;gap:12px}
+.etiket::before{content:"";width:28px;height:1.5px;background:currentColor}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:0}
+h2{font-size:clamp(34px,5vw,64px)}
+h2 em,h1 em{font-style:italic;color:var(--yesil-koyu);font-weight:300}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;border:1.5px solid var(--murekkep);background:var(--murekkep);color:var(--kagit);text-decoration:none;font-weight:600;font-size:15px;transition:transform .3s var(--gecis),background .3s,color .3s}
+.btn:hover{transform:translateY(-2px);background:var(--yesil-koyu);border-color:var(--yesil-koyu)}
+.btn.bos{background:transparent;color:var(--murekkep)}
+.btn.bos:hover{background:var(--murekkep);color:var(--kagit);border-color:var(--murekkep)}
+.btn svg{width:18px;height:18px}
+
+/* ---------- Üst bar ---------- */
+.ust{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,box-shadow .4s,padding .4s;padding:18px 0}
+.ust.dolu{background:rgba(245,242,236,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);box-shadow:0 1px 0 var(--cizgi);padding:10px 0}
+.ust .kap{display:flex;align-items:center;gap:28px}
+.marka{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marka img{width:44px;height:auto}
+.marka b{font:600 19px/1 var(--etiket);letter-spacing:.34em}
+.marka small{display:block;font:500 10.5px/1 var(--etiket);letter-spacing:.26em;color:var(--gri);margin-top:5px}
+.menu{display:flex;gap:4px;margin-left:auto}
+.menu a{text-decoration:none;font-weight:500;font-size:14.5px;padding:9px 14px;border-radius:999px;transition:background .25s}
+.menu a:hover{background:rgba(21,22,20,.06)}
+.ust .tel{font-weight:600;font-size:14.5px;text-decoration:none;white-space:nowrap}
+.ust .btn{padding:11px 20px;font-size:14px}
+.hamburger{display:none;margin-left:auto;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--murekkep);background:transparent;place-items:center}
+.hamburger span{display:block;width:18px;height:1.5px;background:var(--murekkep);box-shadow:0 6px 0 var(--murekkep),0 -6px 0 var(--murekkep)}
+.mobil-menu{position:fixed;inset:0;z-index:60;background:var(--koyu);color:var(--kagit);padding:26px var(--kenar);display:flex;flex-direction:column;transform:translateY(-100%);transition:transform .55s var(--gecis)}
+.mobil-menu.acik{transform:none}
+.mobil-menu .kapat{align-self:flex-end;background:none;border:1.5px solid rgba(255,255,255,.35);border-radius:50%;width:46px;height:46px;font-size:22px;color:#fff}
+.mobil-menu nav{display:flex;flex-direction:column;margin-top:30px}
+.mobil-menu nav a{font:300 clamp(34px,9vw,52px)/1.25 var(--serif);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.1);padding:8px 0}
+.mobil-menu .alt{margin-top:auto;display:flex;flex-direction:column;gap:6px;color:rgba(255,255,255,.7);font-size:15px}
+.mobil-menu .alt a{text-decoration:none}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:150px 0 70px;overflow:hidden}
+.hero .kap{display:grid;grid-template-columns:1.08fr .92fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(46px,7.4vw,104px);line-height:.98;margin:22px 0 26px}
+.hero h1 .satir{display:block;overflow:hidden}
+.hero h1 .satir > span{display:inline-block;transform:translateY(105%);animation:yuksel 1.1s var(--gecis) forwards}
+.hero h1 .satir:nth-child(2) > span{animation-delay:.12s}
+.hero h1 .satir:nth-child(3) > span{animation-delay:.24s}
+@keyframes yuksel{to{transform:none}}
+.hero p.giris{font-size:clamp(16.5px,1.5vw,19px);color:var(--gri);max-width:520px;margin:0 0 34px}
+.hero .eylem{display:flex;flex-wrap:wrap;gap:12px}
+.hero .imza{margin-top:44px;display:flex;align-items:center;gap:16px;color:var(--gri);font-size:14px}
+.hero .imza b{color:var(--murekkep);font-weight:600;display:block;font-size:15px}
+.hero .imza .nokta{width:10px;height:10px;border-radius:50%;background:var(--yesil);box-shadow:0 0 0 6px var(--yesil-acik);flex:none}
+.halka-kutu{position:relative;aspect-ratio:1;width:min(100%,560px);justify-self:end}
+.halka-kutu .foto{position:absolute;inset:11%;border-radius:50%;overflow:hidden;background:#fff;box-shadow:0 40px 80px -30px rgba(40,40,30,.35)}
+.halka-kutu .foto img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform:scale(1.08);animation:yakinlas 2.2s var(--gecis) forwards}
+@keyframes yakinlas{to{transform:scale(1)}}
+.halka{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.halka path{fill:none;stroke:var(--murekkep);stroke-width:15;stroke-linecap:round;stroke-dasharray:var(--u);stroke-dashoffset:var(--u);animation:ciz 1.8s .35s var(--gecis) forwards}
+.halka path + path{animation-delay:.6s}
+@keyframes ciz{to{stroke-dashoffset:0}}
+.halka g{transform-origin:50% 50%;animation:don 40s linear infinite}
+@keyframes don{to{transform:rotate(360deg)}}
+.rozet{position:absolute;background:var(--kagit);border-radius:18px;padding:14px 18px;box-shadow:0 18px 40px -18px rgba(30,30,20,.35);font-size:13.5px;line-height:1.35;opacity:0;animation:belir .9s 1.4s var(--gecis) forwards}
+.rozet b{display:block;font:500 19px/1.1 var(--serif)}
+.rozet.r1{left:-4%;bottom:14%}
+.rozet.r2{right:-2%;top:9%;animation-delay:1.6s}
+.rozet .ikon{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--yesil-acik);color:var(--yesil-koyu);margin-bottom:6px}
+@keyframes belir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- kayan şerit ---------- */
+.serit{border-block:1px solid var(--cizgi);background:var(--kagit);overflow:hidden;padding:20px 0}
+.serit .ic{display:flex;gap:46px;width:max-content;animation:kay 55s linear infinite}
+.serit:hover .ic{animation-play-state:paused}
+.serit a{font:300 clamp(22px,2.6vw,32px)/1 var(--serif);text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:46px}
+.serit a::after{content:"";width:10px;height:10px;border-radius:50%;border:2px solid var(--yesil)}
+.serit a:hover{color:var(--yesil-koyu);font-style:italic}
+@keyframes kay{to{transform:translateX(-50%)}}
+
+/* ---------- güven satırı ---------- */
+.guven{padding:56px 0}
+.guven .kap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.guven div{padding:6px 26px;border-left:1px solid var(--cizgi)}
+.guven div:first-child{border-left:0;padding-left:0}
+.guven b{font:400 clamp(22px,2.2vw,28px)/1.15 var(--serif);display:block;margin-bottom:6px}
+.guven span{color:var(--gri);font-size:14.5px}
+
+/* ---------- bölüm genel ---------- */
+section{position:relative}
+.bolum{padding:clamp(80px,11vw,150px) 0}
+.bas{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+.bas p{max-width:430px;color:var(--gri);margin:0}
+.bas h2{margin-top:18px}
+
+/* ---------- Hekim ---------- */
+.hekim{background:var(--kagit)}
+.hekim .kap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,7vw,110px);align-items:center}
+.hekim .gorsel{position:relative}
+.hekim .gorsel img{border-radius:240px 240px var(--r) var(--r);aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;width:100%;background:#fff}
+.hekim .gorsel .not{position:absolute;right:-28px;bottom:42px;background:var(--koyu);color:var(--kagit);padding:20px 22px;border-radius:18px;max-width:250px;font-size:13.5px;line-height:1.45}
+.hekim .gorsel .not em{display:block;font:italic 300 18px/1.3 var(--serif);margin-top:6px;color:#fff}
+.hekim h2{margin:18px 0 28px}
+.hekim .metin p{color:var(--gri);margin:0 0 16px}
+.zaman{list-style:none;padding:0;margin:34px 0 0;border-top:1px solid var(--cizgi)}
+.zaman li{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--cizgi);font-size:15px}
+.zaman li b{font:500 15px/1.5 var(--etiket);letter-spacing:.14em;color:var(--yesil-koyu)}
+
+/* ---------- Tedaviler ---------- */
+.sekmeler{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:34px}
+.sekmeler button{border:1.5px solid var(--cizgi);background:transparent;padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;transition:all .25s}
+.sekmeler button:hover{border-color:var(--murekkep)}
+.sekmeler button.aktif{background:var(--murekkep);color:var(--kagit);border-color:var(--murekkep)}
+.sekmeler button sup{font-weight:500;opacity:.6;margin-left:3px}
+.kartlar{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.kart{position:relative;text-align:left;background:var(--kagit);border:1px solid var(--cizgi);border-radius:var(--r);padding:28px 26px 26px;min-height:270px;display:flex;flex-direction:column;overflow:hidden;transition:transform .45s var(--gecis),border-color .3s,box-shadow .45s}
+.kart::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;border:18px solid var(--yesil-acik);right:-120px;top:-120px;transition:transform .7s var(--gecis),border-color .4s}
+.kart:hover{transform:translateY(-6px);border-color:transparent;box-shadow:0 30px 60px -32px rgba(40,45,20,.4)}
+.kart:hover::before{transform:scale(1.35) rotate(40deg);border-color:#E2EBC6}
+.kart .no{font:500 13px/1 var(--etiket);letter-spacing:.2em;color:var(--soluk);position:relative}
+.kart .kat{font:600 11.5px/1 var(--etiket);letter-spacing:.22em;text-transform:uppercase;color:var(--yesil-koyu);margin-top:auto;padding-top:26px;position:relative}
+.kart h3{font-size:clamp(23px,2.2vw,28px);line-height:1.12;margin:10px 0 10px;position:relative}
+.kart p{font-size:14.5px;color:var(--gri);margin:0 0 20px;position:relative;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.kart .alt{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;font-weight:600;position:relative}
+.kart .ok{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--murekkep);display:grid;place-items:center;transition:background .3s,color .3s,transform .4s var(--gecis)}
+.kart:hover .ok{background:var(--murekkep);color:var(--kagit);transform:rotate(-45deg)}
+.kart[hidden]{display:none}
+
+/* ---------- Klinik ---------- */
+.klinik{background:var(--koyu);color:var(--kagit)}
+.klinik .etiket{color:var(--yesil)}
+.klinik h2 em{color:#B9D36A}
+.klinik .bas p{color:rgba(251,250,247,.65)}
+.vitrin{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px}
+.vitrin figure{margin:0;border-radius:var(--r);overflow:hidden;position:relative;cursor:zoom-in}
+.vitrin figure img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--gecis)}
+.vitrin figure:hover img{transform:scale(1.04)}
+.vitrin .buyuk{aspect-ratio:4/3}
+.vitrin .yan{display:grid;grid-template-rows:1fr 1fr;gap:16px}
+.vitrin figcaption{position:absolute;left:18px;bottom:16px;background:rgba(23,25,22,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:8px 14px;border-radius:999px;font-size:13px}
+.hizmet-izgara{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:70px 0 0;border-top:1px solid rgba(255,255,255,.12)}
+.hizmet-izgara div{padding:28px 24px 10px 0}
+.hizmet-izgara div + div{padding-left:24px;border-left:1px solid rgba(255,255,255,.12)}
+.hizmet-izgara h3{font-size:24px;margin-bottom:10px}
+.hizmet-izgara p{color:rgba(251,250,247,.65);font-size:14.5px;margin:0}
+.galeri{columns:4 220px;column-gap:12px;margin-top:70px}
+.galeri button{display:block;width:100%;padding:0;border:0;margin:0 0 12px;border-radius:14px;overflow:hidden;background:var(--koyu-2);break-inside:avoid}
+.galeri img{width:100%;height:auto;transition:transform .8s var(--gecis),opacity .4s}
+.galeri button:hover img{transform:scale(1.05);opacity:.85}
+.galeri button.gizli{display:none}
+.galeri-alt{text-align:center;margin-top:26px}
+.klinik .btn.bos{color:var(--kagit);border-color:rgba(255,255,255,.4)}
+.klinik .btn.bos:hover{background:var(--kagit);color:var(--murekkep)}
+
+/* ---------- Neden ---------- */
+.neden-izgara{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--cizgi)}
+.neden-izgara article{padding:40px 34px 40px 0;border-bottom:1px solid var(--cizgi)}
+.neden-izgara article:not(:nth-child(3n+1)){padding-left:34px;border-left:1px solid var(--cizgi)}
+.neden-izgara .ik{width:54px;height:54px;border-radius:50%;background:var(--yesil-acik);color:var(--yesil-koyu);display:grid;place-items:center;margin-bottom:22px}
+.neden-izgara .ik svg{width:24px;height:24px}
+.neden-izgara h3{font-size:26px;margin-bottom:10px}
+.neden-izgara p{color:var(--gri);margin:0;font-size:15px}
+.kisiye{margin-top:70px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kisiye div{background:var(--kagit);border-radius:var(--r);padding:26px;border:1px solid var(--cizgi)}
+.kisiye b{font:500 19px/1.25 var(--serif);display:block;margin-bottom:8px}
+.kisiye span{color:var(--gri);font-size:14.5px}
+
+/* ---------- Sigorta / Doktortakvimi bandı ---------- */
+.bant{background:var(--yesil);color:var(--murekkep);border-radius:calc(var(--r) + 10px);padding:clamp(34px,5vw,60px);display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.bant::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:44px solid rgba(255,255,255,.18);right:-140px;bottom:-200px}
+.bant h2{font-size:clamp(30px,4vw,50px)}
+.bant p{margin:16px 0 0;max-width:520px}
+.bant .eylem{display:flex;flex-direction:column;gap:12px;align-items:flex-start;position:relative;z-index:1}
+.bant .btn{background:var(--murekkep);border-color:var(--murekkep)}
+.bant .btn.bos{background:transparent;color:var(--murekkep)}
+.bant .btn.bos:hover{background:var(--murekkep);color:var(--kagit)}
+
+/* ---------- Yorumlar ---------- */
+.yorum-ray{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(330px,1fr);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-width:thin}
+.yorum{scroll-snap-align:start;background:var(--kagit);border:1px solid var(--cizgi);border-radius:var(--r);padding:32px 30px;display:flex;flex-direction:column}
+.yorum .yildiz{color:var(--yesil);letter-spacing:3px;font-size:15px}
+.yorum blockquote{margin:16px 0 26px;font:300 clamp(18px,1.6vw,21px)/1.45 var(--serif)}
+.yorum footer{margin-top:auto;display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px}
+.yorum footer i{width:42px;height:42px;border-radius:50%;background:var(--koyu);color:var(--kagit);display:grid;place-items:center;font:normal 500 15px/1 var(--etiket);letter-spacing:.06em}
+.yorum footer small{display:block;font-weight:500;color:var(--soluk);font-size:12.5px}
+.yorum-bag{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- Blog ---------- */
+.yazi-izgara{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.yazi{background:var(--kagit);border:1px solid var(--cizgi);border-radius:var(--r);overflow:hidden;text-align:left;padding:0;display:grid;grid-template-columns:.8fr 1fr;transition:transform .45s var(--gecis),box-shadow .45s}
+.yazi:hover{transform:translateY(-4px);box-shadow:0 30px 60px -34px rgba(40,45,20,.4)}
+.yazi img{width:100%;height:100%;object-fit:cover;min-height:240px}
+.yazi .ic{padding:28px 26px;display:flex;flex-direction:column}
+.yazi time{font:500 12.5px/1 var(--etiket);letter-spacing:.2em;color:var(--soluk);text-transform:uppercase}
+.yazi h3{font-size:24px;line-height:1.15;margin:12px 0}
+.yazi p{color:var(--gri);font-size:14.5px;margin:0 0 18px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.yazi .devam{margin-top:auto;font-weight:600;font-size:14px}
+
+/* ---------- Randevu ---------- */
+.randevu{background:var(--kagit)}
+.randevu .kap{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px)}
+.randevu .sol p{color:var(--gri)}
+.randevu .sol .vurgu{font:300 clamp(20px,2vw,24px)/1.4 var(--serif);color:var(--murekkep);margin:26px 0}
+.form{background:var(--krem);border-radius:calc(var(--r) + 6px);padding:clamp(24px,4vw,44px);border:1px solid var(--cizgi)}
+.form .ikili{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.alan{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.alan label{font:600 12px/1 var(--etiket);letter-spacing:.2em;text-transform:uppercase;color:var(--gri)}
+.alan input,.alan select,.alan textarea{font:inherit;font-size:16px;border:1.5px solid var(--cizgi);background:var(--kagit);border-radius:14px;padding:14px 16px;color:var(--murekkep);transition:border-color .25s,box-shadow .25s;width:100%}
+.alan textarea{min-height:110px;resize:vertical}
+.alan input:focus,.alan select:focus,.alan textarea:focus{outline:none;border-color:var(--yesil-koyu);box-shadow:0 0 0 4px var(--yesil-acik)}
+.alan .hata{color:#A33A2A;font-size:13px;display:none}
+.alan.yanlis input{border-color:#C8553D}
+.alan.yanlis .hata{display:block}
+.form .btn{width:100%;justify-content:center;padding:17px}
+.form .kvkk{font-size:12.5px;color:var(--soluk);margin:14px 0 0;text-align:center}
+.zaman-sec{display:flex;gap:8px;flex-wrap:wrap}
+.zaman-sec label{position:relative}
+.zaman-sec input{position:absolute;opacity:0;pointer-events:none}
+.zaman-sec span{display:inline-block;padding:10px 16px;border-radius:999px;border:1.5px solid var(--cizgi);background:var(--kagit);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.zaman-sec input:checked + span{background:var(--murekkep);border-color:var(--murekkep);color:var(--kagit)}
+.zaman-sec input:focus-visible + span{box-shadow:0 0 0 4px var(--yesil-acik)}
+
+/* ---------- İletişim ---------- */
+.iletisim .kap{display:grid;grid-template-columns:1fr 1.2fr;gap:16px}
+.bilgi{background:var(--koyu);color:var(--kagit);border-radius:var(--r);padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:26px}
+.bilgi .etiket{color:var(--yesil)}
+.bilgi h2{font-size:clamp(30px,3.6vw,46px)}
+.bilgi dl{margin:0;display:grid;gap:20px}
+.bilgi dt{font:600 12px/1 var(--etiket);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:7px}
+.bilgi dd{margin:0;font-size:16.5px}
+.bilgi dd a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+.bilgi dd a:hover{border-color:#fff}
+.bilgi .sosyal{display:flex;gap:10px;margin-top:auto}
+.bilgi .sosyal a{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;transition:background .25s}
+.bilgi .sosyal a:hover{background:rgba(255,255,255,.12)}
+.bilgi .sosyal svg{width:20px;height:20px}
+.harita{border-radius:var(--r);overflow:hidden;min-height:420px;background:var(--cizgi)}
+.harita iframe{width:100%;height:100%;min-height:420px;border:0;filter:grayscale(.85) contrast(1.05)}
+
+/* ---------- Alt bilgi ---------- */
+.alt-bilgi{padding:70px 0 40px;border-top:1px solid var(--cizgi);margin-top:clamp(70px,9vw,120px)}
+.alt-bilgi .ust-sira{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.alt-bilgi .dev{font:300 clamp(40px,8vw,120px)/.9 var(--serif);letter-spacing:-.04em;margin:0 0 50px}
+.alt-bilgi .dev em{font-style:italic;color:var(--yesil-koyu)}
+.alt-bilgi h4{font:600 12px/1 var(--etiket);letter-spacing:.24em;text-transform:uppercase;color:var(--soluk);margin:0 0 16px}
+.alt-bilgi ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:15px}
+.alt-bilgi ul a{text-decoration:none}
+.alt-bilgi ul a:hover{color:var(--yesil-koyu)}
+.alt-bilgi .son{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid var(--cizgi);font-size:13px;color:var(--soluk)}
+.alt-bilgi .son a{color:var(--soluk);text-decoration:none}
+.alt-bilgi .son a:hover{color:var(--murekkep)}
+
+/* ---------- WhatsApp yüzen ---------- */
+.wa{position:fixed;right:clamp(14px,2.5vw,28px);bottom:clamp(14px,2.5vw,28px);z-index:40;width:60px;height:60px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);transition:transform .3s var(--gecis)}
+.wa:hover{transform:scale(1.08)}
+.wa svg{width:30px;height:30px}
+
+/* ---------- Çekmece (tedavi / yazı detayı) ---------- */
+.perde{position:fixed;inset:0;z-index:70;background:rgba(15,16,14,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .4s}
+.perde.acik{opacity:1;pointer-events:auto}
+.cekmece{position:fixed;top:0;right:0;bottom:0;z-index:71;width:min(760px,100%);background:var(--kagit);transform:translateX(100%);transition:transform .6s var(--gecis);display:flex;flex-direction:column;box-shadow:-30px 0 80px -40px rgba(0,0,0,.4)}
+.cekmece.acik{transform:none}
+.cekmece .cbas{display:flex;align-items:center;gap:14px;padding:16px clamp(20px,4vw,44px);border-bottom:1px solid var(--cizgi)}
+.cekmece .cbas .etiket{font-size:12px}
+.cekmece .cbas button{margin-left:auto;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--murekkep);background:transparent;font-size:20px;line-height:1}
+.cekmece .govde{overflow-y:auto;padding:clamp(28px,4vw,48px) clamp(20px,4vw,56px) 40px;overscroll-behavior:contain}
+.cekmece h2{font-size:clamp(34px,5vw,56px);margin-bottom:18px}
+.cekmece .meta{color:var(--soluk);font-size:14px;margin-bottom:30px;display:flex;gap:16px;flex-wrap:wrap}
+.okuma{font-size:16.5px;line-height:1.75;color:#33352F}
+.okuma p{margin:0 0 16px}
+.okuma h4{font:500 23px/1.25 var(--serif);color:var(--murekkep);margin:36px 0 12px;letter-spacing:-.01em}
+.okuma h5{font:600 16px/1.4 var(--sans);color:var(--murekkep);margin:22px 0 6px}
+.okuma ul,.okuma ol{padding-left:22px;margin:0 0 18px}
+.okuma li{margin-bottom:8px}
+.okuma li::marker{color:var(--yesil-koyu)}
+.okuma .tire{padding-left:18px;position:relative;margin-bottom:6px}
+.okuma .tire::before{content:"";position:absolute;left:2px;top:.75em;width:7px;height:7px;border-radius:50%;background:var(--yesil)}
+.okuma strong{color:var(--murekkep)}
+.cekmece .cson{border-top:1px solid var(--cizgi);padding:16px clamp(20px,4vw,44px);display:flex;gap:10px;flex-wrap:wrap;background:var(--krem)}
+.cekmece .cson .btn{flex:1;justify-content:center;min-width:180px}
+.ilgili{margin-top:44px;padding-top:28px;border-top:1px solid var(--cizgi)}
+.ilgili h6{font:600 12px/1 var(--etiket);letter-spacing:.24em;text-transform:uppercase;color:var(--soluk);margin:0 0 14px}
+.ilgili div{display:flex;flex-wrap:wrap;gap:8px}
+.ilgili button{border:1.5px solid var(--cizgi);background:transparent;border-radius:999px;padding:9px 15px;font-weight:600;font-size:13.5px}
+.ilgili button:hover{border-color:var(--murekkep)}
+
+/* ---------- Işık kutusu ---------- */
+.isik{position:fixed;inset:0;z-index:80;background:rgba(10,11,9,.94);display:none;align-items:center;justify-content:center}
+.isik.acik{display:flex}
+.isik img{max-width:min(92vw,1300px);max-height:84vh;border-radius:10px;object-fit:contain}
+.isik button{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:52px;height:52px;font-size:22px}
+.isik .k{top:20px;right:20px}
+.isik .o{left:20px;top:50%;transform:translateY(-50%)}
+.isik .s{right:20px;top:50%;transform:translateY(-50%)}
+.isik .sayac{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font:500 14px/1 var(--etiket);letter-spacing:.2em}
+
+/* ---------- Görünme animasyonu ---------- */
+.gor{opacity:0;transform:translateY(34px);transition:opacity 1s var(--gecis),transform 1s var(--gecis)}
+.gor.goründü,.gor.gorundu{opacity:1;transform:none}
+
+/* ---------- Duyarlı ---------- */
+@media (max-width:1080px){
+  .menu,.ust .tel{display:none}
+  .hamburger{display:grid}
+  .ust .btn{display:none}
+  .kartlar{grid-template-columns:repeat(2,1fr)}
+  .hizmet-izgara{grid-template-columns:1fr 1fr}
+  .hizmet-izgara div:nth-child(3){padding-left:0;border-left:0}
+  .kisiye{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  .hero{padding-top:118px}
+  .hero .kap{grid-template-columns:1fr}
+  .halka-kutu{justify-self:center;width:min(100%,440px);order:-1}
+  .rozet.r1{left:0}.rozet.r2{right:0}
+  .guven .kap{grid-template-columns:1fr 1fr;gap:26px 0}
+  .guven div:nth-child(3){border-left:0;padding-left:0}
+  .hekim .kap,.randevu .kap,.iletisim .kap{grid-template-columns:1fr}
+  .hekim .gorsel{max-width:460px}
+  .hekim .gorsel .not{right:12px}
+  .vitrin{grid-template-columns:1fr}
+  .neden-izgara{grid-template-columns:1fr}
+  .neden-izgara article,.neden-izgara article:not(:nth-child(3n+1)){padding:30px 0;border-left:0}
+  .bant{grid-template-columns:1fr}
+  .yazi-izgara{grid-template-columns:1fr}
+  .alt-bilgi .ust-sira{grid-template-columns:1fr 1fr}
+  .alt-bilgi .ust-sira > div:first-child{grid-column:1/-1}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .kartlar{grid-template-columns:1fr}
+  .kart{min-height:0}
+  .hizmet-izgara{grid-template-columns:1fr}
+  .hizmet-izgara div,.hizmet-izgara div + div{padding:24px 0 6px;border-left:0}
+  .kisiye{grid-template-columns:1fr}
+  .form .ikili{grid-template-columns:1fr}
+  .yazi{grid-template-columns:1fr}
+  .yazi img{min-height:0;aspect-ratio:16/9}
+  .yorum-ray{grid-auto-columns:86%}
+  .zaman li{grid-template-columns:72px 1fr;gap:12px}
+  .galeri{columns:2;column-gap:8px}
+  .galeri button{margin-bottom:8px}
+  .marka small{display:none}
+  .rozet{font-size:12px;padding:10px 13px}
+  .rozet b{font-size:16px}
+  .isik .o,.isik .s{top:auto;bottom:12px;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .gor{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="ust" id="ust">
+  <div class="kap">
+    <a class="marka" href="#basa" aria-label="DentCadde ana sayfa">
+      <img src="img/logo-isaret.png" alt="" width="44" height="39">
+      <span><b>DENTCADDE</b><small>DİŞ ESTETİĞİ · ORTODONTİ</small></span>
+    </a>
+    <nav class="menu" aria-label="Ana menü">
+      <a href="#hekim">Hekimimiz</a>
+      <a href="#tedaviler">Tedaviler</a>
+      <a href="#klinik">Klinik</a>
+      <a href="#yorumlar">Yorumlar</a>
+      <a href="#blog">Blog</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+    <a class="tel" href="tel:+905350418048">0535 041 80 48</a>
+    <a class="btn" href="#randevu">Randevu Alın</a>
+    <button class="hamburger" id="hamburger" aria-label="Menüyü aç"><span></span></button>
+  </div>
+</header>
+
+<div class="mobil-menu" id="mobilMenu" aria-hidden="true">
+  <button class="kapat" id="menuKapat" aria-label="Menüyü kapat">×</button>
+  <nav>
+    <a href="#hekim">Hekimimiz</a>
+    <a href="#tedaviler">Tedaviler</a>
+    <a href="#klinik">Klinik</a>
+    <a href="#yorumlar">Yorumlar</a>
+    <a href="#blog">Blog</a>
+    <a href="#randevu">Randevu</a>
+    <a href="#iletisim">İletişim</a>
+  </nav>
+  <div class="alt">
+    <a href="tel:+905350418048">0535 041 80 48</a>
+    <a href="tel:+902163863273">0216 386 32 73</a>
+    <span>Bağdat Cad. No:137, Feneryolu · Kadıköy</span>
+  </div>
+</div>
+
+<main id="basa">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="kap">
+    <div>
+      <span class="etiket">Dr. Aslıhan Yıldırım Türkmen ile</span>
+      <h1>
+        <span class="satir"><span>Dişleriniz</span></span>
+        <span class="satir"><span><em>ışıldasın,</em></span></span>
+        <span class="satir"><span>özgüveniniz artsın.</span></span>
+      </h1>
+      <p class="giris">Sağlıklı dişler hem estetik bir görünüm sağlar hem de genel sağlığı koruyarak yaşam kalitenizi artırır. Profesyonel ve güncel diş hekimliği tedavi yaklaşımlarımız ile en iyi ağız ve diş sağlığı hizmeti almanız için buradayız.</p>
+      <div class="eylem">
+        <a class="btn" href="#randevu">Randevu Alın
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn bos" href="#tedaviler">Tedavilerimiz</a>
+      </div>
+      <div class="imza">
+        <span class="nokta"></span>
+        <span><b>Bağdat Caddesi, Feneryolu</b>Adıgüzel Plaza Kat 1 · Kadıköy / İstanbul</span>
+      </div>
+    </div>
+
+    <div class="halka-kutu" aria-hidden="false">
+      <div class="foto"><img src="img/doktor.jpg" alt="Dr. Aslıhan Yıldırım Türkmen" width="1100" height="1097" fetchpriority="high"></div>
+      <svg class="halka" viewBox="0 0 400 400" aria-hidden="true">
+        <g>
+          <path style="--u:520" d="M118 338 A170 170 0 0 1 110 58 Q140 36 172 31"/>
+          <path style="--u:520" d="M282 62 A170 170 0 0 1 290 342 Q260 364 228 369"/>
+        </g>
+      </svg>
+      <div class="rozet r1"><span class="ikon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span><b>Ortodonti Doktorası</b>İstanbul Üniversitesi</div>
+      <div class="rozet r2"><span class="ikon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></span><b>Tüm özel sigortalar</b>ile anlaşmalı</div>
+    </div>
+  </div>
+</section>
+
+<div class="serit" aria-label="Tedavi başlıkları"><div class="ic" id="serit"></div></div>
+
+<section class="guven">
+  <div class="kap">
+    <div class="gor"><b>2020'den beri</b><span>Bağdat Caddesi'ndeki kendi muayenehanemizde</span></div>
+    <div class="gor"><b>Ortodonti doktorası</b><span>İstanbul Üniversitesi Sağlık Bilimleri Enstitüsü</span></div>
+    <div class="gor"><b>19 tedavi alanı</b><span>Çocuktan yaşlıya her yaşa kapsamlı hizmet</span></div>
+    <div class="gor"><b>Online randevu</b><span>Doktortakvimi ile anlaşmalı muayenehane</span></div>
+  </div>
+</section>
+
+<!-- ================= HEKİM ================= -->
+<section class="hekim bolum" id="hekim">
+  <div class="kap">
+    <div class="gorsel gor">
+      <img src="img/doktor.jpg" alt="Dr. Aslıhan Yıldırım Türkmen portresi" loading="lazy" width="1100" height="1097">
+      <div class="not">Doktora tezi<em>“Clear Aligner Apareyinin Etkinliğinin Belirlenmesi”</em></div>
+    </div>
+    <div class="metin">
+      <span class="etiket gor">Hekimimiz</span>
+      <h2 class="gor">Dr. Aslıhan <em>Yıldırım Türkmen</em></h2>
+      <p class="gor">Dr. Aslıhan Yıldırım Türkmen, 1985 Tekirdağ doğumlu olup Ümraniye Anadolu Lisesi mezunudur. İstanbul Üniversitesi Diş Hekimliği Fakültesi'nde lisans eğitimine başlamış; 2007 yılında üniversite eğitimini tamamlamıştır.</p>
+      <p class="gor">2007 yılında İstanbul Üniversitesi Sağlık Bilimleri Enstitüsü Ortodonti Anabilim Dalı'nda doktora eğitimine başlayan hekim, 2013 yılında "Clear Aligner Apareyinin Etkinliğinin Belirlenmesi" adlı tezini sunarak doktora eğitimini tamamlamıştır.</p>
+      <p class="gor">Yurt içi ve yurt dışında düzenlenen birçok bilimsel kongre ve sempozyumda katılımcı ve konuşmacı olarak yer almıştır. Deneyimlerini ihtiyacı olan hastalar ile paylaşabilmek amacıyla 2020 yılında kendi muayenehanesini açmıştır.</p>
+      <ul class="zaman gor">
+        <li><b>2007</b><span>İstanbul Üniversitesi Diş Hekimliği Fakültesi mezuniyeti</span></li>
+        <li><b>2013</b><span>İÜ Sağlık Bilimleri Enstitüsü, Ortodonti Anabilim Dalı doktorası</span></li>
+        <li><b>2020</b><span>Dr. Aslıhan Yıldırım Türkmen Diş Estetiği ve Ortodonti Kliniği</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEDAVİLER ================= -->
+<section class="bolum" id="tedaviler">
+  <div class="kap">
+    <div class="bas">
+      <div>
+        <span class="etiket gor">Tedavilerimiz</span>
+        <h2 class="gor">Sağlıklı dişler, <em>huzurlu bir yaşam</em> için ilk adım.</h2>
+      </div>
+      <p class="gor">Ortodontiden implanta, çocuk diş hekimliğinden evde tedaviye kadar 19 alanda kapsamlı ağız ve diş sağlığı hizmeti. Ayrıntısını okumak istediğiniz tedaviye dokunun.</p>
+    </div>
+    <div class="sekmeler" id="sekmeler" role="tablist"></div>
+    <div class="kartlar" id="kartlar"></div>
+  </div>
+</section>
+
+<!-- ================= KLİNİK ================= -->
+<section class="klinik bolum" id="klinik">
+  <div class="kap">
+    <div class="bas">
+      <div>
+        <span class="etiket gor">Hakkımızda</span>
+        <h2 class="gor">Bağdat Caddesi'nde <em>ışık alan</em> bir klinik.</h2>
+      </div>
+      <p class="gor">Dr. Aslıhan Yıldırım Türkmen Diş Estetiği ve Ortodonti Kliniği, 2020 yılında diş estetiği ve ortodonti alanında uzman Dr. Aslıhan Yıldırım Türkmen tarafından kuruldu. Vizyonu, modern diş hekimliğinde güncel ve kanıta dayalı tedavileri bir araya getirerek hastalara en güvenilir diş tedavisini sunmaktır.</p>
+    </div>
+
+    <div class="vitrin">
+      <figure class="buyuk gor" data-g="20"><img src="img/galeri/k21.jpg" alt="Bekleme salonu" loading="lazy"><figcaption>Bekleme salonu</figcaption></figure>
+      <div class="yan">
+        <figure class="gor" data-g="22"><img src="img/galeri/k23.jpg" alt="Tedavi odası" loading="lazy"><figcaption>Tedavi odası</figcaption></figure>
+        <figure class="gor" data-g="11"><img src="img/galeri/k12.jpg" alt="DentCadde logo duvarı" loading="lazy"><figcaption>Karşılama</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="hizmet-izgara">
+      <div class="gor"><h3>Genel Diş Muayenesi</h3><p>Düzenli takip edilen muayeneler ile ağız diş sağlığının en üst seviyede korunmasını sağlıyoruz.</p></div>
+      <div class="gor"><h3>Estetik Diş Hekimliği</h3><p>Gülüş tasarımı (Smile Design), diş estetiği, seramik (porselen) lamina veneer, full estetik kuron, zirkonya restorasyonlar, porselen dolgu, diş beyazlatma gibi güncel diş estetiği materyalleri ile hazırlanan tedavi yaklaşımları uyguluyoruz.</p></div>
+      <div class="gor"><h3>Ortodontik Tedaviler</h3><p>Çene, yüz ve diş bozukluklarının çocukluktan erişkinliğe kadar her yaşta düzeltilmesine yardımcı oluyoruz.</p></div>
+      <div class="gor"><h3>İmplant Tedavisi</h3><p>Kaybedilen dişlerinizi geri kazanmanız için güvenilir ve kalıcı implantlar ile estetik ve fonksiyonel diş tedavisi seçenekleri sunuyoruz.</p></div>
+    </div>
+
+    <div class="galeri" id="galeri"></div>
+    <div class="galeri-alt"><button class="btn bos" id="galeriAc">Tüm fotoğrafları gör (44)</button></div>
+  </div>
+</section>
+
+<!-- ================= NEDEN ================= -->
+<section class="bolum" id="neden">
+  <div class="kap">
+    <div class="bas">
+      <div>
+        <span class="etiket gor">Neden DentCadde</span>
+        <h2 class="gor">Ekibimiz, <em>size özel</em> tedaviyi uygular.</h2>
+      </div>
+      <p class="gor">Tedavi için başvuran hastaların bireysel ağız diş sağlığı ihtiyaçlarına yönelik, alanında uzman ve profesyonel diş hekimlerinden oluşan ekibimiz uygun, güncel ve bilimsel tedaviyi uygulamaktadır.</p>
+    </div>
+    <div class="neden-izgara">
+      <article class="gor"><div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.5-6 8-6s7 2 8 6"/></svg></div><h3>Profesyonel Yardım</h3><p>Uzman ekibimiz size en iyi tedavi seçeneklerini sunar, sağlığınızı ön planda tutar.</p></article>
+      <article class="gor"><div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg></div><h3>Garantili Sonuçlar</h3><p>Tedavilerimiz sonuç odaklıdır ve en iyi sonuçları almanız için çalışırız.</p></article>
+      <article class="gor"><div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Zamanında Destek</h3><p>Diş sağlığınızın sürekliliğini sağlamak adına her zaman yanınızdayız.</p></article>
+      <article class="gor"><div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7Z"/></svg></div><h3>Estetik Tasarım</h3><p>Estetik ve işlevselliği bir araya getiren diş tedavileri ile sağlıklı ve çekici bir gülüşe kavuşabilirsiniz.</p></article>
+      <article class="gor"><div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></svg></div><h3>Hızlı Yanıt</h3><p>Diş sağlığınızı riske atmamak için acil durumlarda hızlı çözümler sunuyoruz.</p></article>
+      <article class="gor"><div class="ik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Güvenilir Hizmet</h3><p>Tedavilerimizde en güncel teknikleri kullanarak size güvenli ve kalıcı çözümler sunuyoruz.</p></article>
+    </div>
+    <div class="kisiye">
+      <div class="gor"><b>Kişiye Özel Yaklaşım</b><span>Her hastamız için özel tedavi planları oluşturuyoruz.</span></div>
+      <div class="gor"><b>Modern Teknoloji</b><span>Kliniğimizde son teknoloji ile donatılmış, konforlu bir tedavi süreci sunuyoruz.</span></div>
+      <div class="gor"><b>Hastaya Odaklı Hizmet</b><span>Memnuniyetinizi en önemli hedefimiz olarak belirliyoruz.</span></div>
+      <div class="gor"><b>Eğitim ve Bilinçlendirme</b><span>Ağız ve diş sağlığı konusunda bireylere eğitimler verilmektedir.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BANT ================= -->
+<section>
+  <div class="kap">
+    <div class="bant gor">
+      <div>
+        <h2>Özel sağlık sigortalarının <em style="color:var(--murekkep)">hepsi</em> ile anlaşmalıyız.</h2>
+        <p>Muayenehanemiz Doktortakvimi uygulaması ile de anlaşmalıdır; randevu al butonuna tıklayıp dilediğiniz saate randevunuzu kendiniz oluşturabilirsiniz.</p>
+      </div>
+      <div class="eylem">
+        <a class="btn" href="https://www.doktortakvimi.com/aslihan-yildirim-turkmen/ortodonti-dis-hekimi/istanbul" target="_blank" rel="noopener">Doktortakvimi'nden randevu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="btn bos" href="#randevu">Sizi arayalım</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= YORUMLAR ================= -->
+<section class="bolum" id="yorumlar">
+  <div class="kap">
+    <div class="bas">
+      <div>
+        <span class="etiket gor">Mutlu Yorumlar</span>
+        <h2 class="gor">Bizi en iyi <em>hastalarımız</em> anlatır.</h2>
+      </div>
+      <div class="gor">
+        <p style="margin-bottom:16px">5 yıldır hizmet veriyoruz ve bizi ve hizmetlerimizi seven harika hastalarla çalıştık. Kliniğimizle ilgili tüm değerlendirmelere aşağıdaki bağlantılardan ulaşabilirsiniz.</p>
+        <div class="yorum-bag">
+          <a class="btn bos" target="_blank" rel="noopener" href="https://www.google.com/search?q=Dr.%20Dt.%20Asl%C4%B1han%20Y%C4%B1ld%C4%B1r%C4%B1m%20T%C3%BCrkmen%2C%20Ortodonti%20Yorumlar&tbm=lcl">Google Yorumları</a>
+          <a class="btn bos" target="_blank" rel="noopener" href="https://www.doktortakvimi.com/aslihan-yildirim-turkmen/ortodonti-dis-hekimi/istanbul#profile-reviews">Doktortakvimi Yorumları</a>
+        </div>
+      </div>
+    </div>
+    <div class="yorum-ray gor">
+      <article class="yorum"><span class="yildiz">★★★★★</span><blockquote>Benim diş hekimi fobimi yenmemi sağlayan tek yer! Artık hiç korkmuyorum! %100 güveniyorum. Dişi kurtarmak için her yolu denediklerini biliyorum. Ayrıca asla ihtiyacınız olmayan şeyler önermezler. Tüm ailem de Dent Cadde'yi tercih ediyor ve onlar da çok memnunlar. Diş hekimliğinde doğru adres kesinlikle DentCadde!</blockquote><footer><i>YO</i><span>Yeşim Oskay<small>Hasta yorumu</small></span></footer></article>
+      <article class="yorum"><span class="yildiz">★★★★★</span><blockquote>Güler yüzlü, profesyonel ve tecrübeli bir hizmet için güvenle gidebilirsiniz. Çocuğumun ortodonti tedavisini burada yaptırdık, ayrıca yetişkin olarak bizler de ne zaman ihtiyaç duysak Dent Cadde'ye gidiyoruz. Tavsiye ederiz 🌷</blockquote><footer><i>BK</i><span>Banu Kölemen<small>Hasta yorumu</small></span></footer></article>
+      <article class="yorum"><span class="yildiz">★★★★★</span><blockquote>Dent Cadde, diş sağlığı konusunda şimdiye kadar karşılaştığım en profesyonel ve güvenilir kliniklerden biri! Tüm çalışanlar inanılmaz bilgili, deneyimli ve hastalarına karşı son derece ilgili. Tedavi sürecini detaylarıyla anlatması, her aşamada sizi rahatlatması ve mükemmel sonuçlar elde etmesi gerçekten takdire şayan.</blockquote><footer><i>NK</i><span>Nazlıcan Kaymak<small>Hasta yorumu</small></span></footer></article>
+      <article class="yorum"><span class="yildiz">★★★★★</span><blockquote>Emin ellerde olmak istiyorsanız kesinlikle tercih edilmesi gereken bir yer.</blockquote><footer><i>UE</i><span>Uğur Edik<small>Hasta yorumu</small></span></footer></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<section class="bolum" id="blog" style="padding-top:0">
+  <div class="kap">
+    <div class="bas">
+      <div>
+        <span class="etiket gor">Blog</span>
+        <h2 class="gor">Merak edilenler, <em>bilinmeyenler.</em></h2>
+      </div>
+    </div>
+    <div class="yazi-izgara" id="yazilar"></div>
+  </div>
+</section>
+
+<!-- ================= RANDEVU ================= -->
+<section class="randevu bolum" id="randevu">
+  <div class="kap">
+    <div class="sol">
+      <span class="etiket gor">Randevu Alın</span>
+      <h2 class="gor" style="margin-top:18px">Sağlığınızı <em>ertelemeyin.</em></h2>
+      <p class="vurgu gor">Uzman hekimlerimizden randevu alıp gülüşünüzü geri kazanmak için ilk adımı atın.</p>
+      <p class="gor">Formu doldurmanız yeterli: ön bilgilendirmenize göre ilgili personelimiz en kısa sürede sizi arayıp randevunuzu oluşturacaktır. Dilerseniz doğrudan arayabilir ya da WhatsApp'tan yazabilirsiniz.</p>
+      <div class="eylem gor" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:26px">
+        <a class="btn bos" href="tel:+905350418048">0535 041 80 48</a>
+        <a class="btn bos" href="tel:+902163863273">0216 386 32 73</a>
+      </div>
+    </div>
+    <form class="form gor" id="form" novalidate>
+      <div class="ikili">
+        <div class="alan"><label for="ad">Adınız Soyadınız</label><input id="ad" name="ad" autocomplete="name" required><span class="hata">Lütfen adınızı yazın.</span></div>
+        <div class="alan"><label for="tel">Telefon</label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required><span class="hata">Geçerli bir telefon numarası yazın.</span></div>
+      </div>
+      <div class="alan"><label for="tedavi">İlgilendiğiniz tedavi</label><select id="tedavi" name="tedavi"><option value="">Emin değilim / Muayene</option></select></div>
+      <div class="alan"><label>Size ne zaman ulaşalım?</label>
+        <div class="zaman-sec">
+          <label><input type="radio" name="zaman" value="Sabah" checked><span>Sabah</span></label>
+          <label><input type="radio" name="zaman" value="Öğleden sonra"><span>Öğleden sonra</span></label>
+          <label><input type="radio" name="zaman" value="Akşam"><span>Akşam</span></label>
+        </div>
+      </div>
+      <div class="alan"><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj" placeholder="Şikâyetinizi ya da sorunuzu kısaca yazın (isteğe bağlı)"></textarea></div>
+      <button class="btn" type="submit">Randevu talebimi gönder
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="kvkk">Talebiniz WhatsApp üzerinden kliniğimize iletilir. Bilgileriniz yalnızca randevu oluşturmak için kullanılır.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= İLETİŞİM ================= -->
+<section class="iletisim bolum" id="iletisim" style="padding-bottom:0">
+  <div class="kap">
+    <div class="bilgi gor">
+      <span class="etiket">İletişime Geçin</span>
+      <h2>Dr. Aslıhan Yıldırım Türkmen Diş Estetiği ve Ortodonti Kliniği</h2>
+      <dl>
+        <div><dt>Adres</dt><dd>Feneryolu Mah. Bağdat Cad. No:137<br>Adıgüzel Plaza Kat: 1 Daire: 4<br>Kadıköy / İstanbul</dd></div>
+        <div><dt>Telefon</dt><dd><a href="tel:+905350418048">0535 041 80 48</a> &nbsp;/&nbsp; <a href="tel:+902163863273">0216 386 32 73</a></dd></div>
+        <div><dt>E-posta</dt><dd><a href="mailto:info@dentcadde.com">info@dentcadde.com</a></dd></div>
+      </dl>
+      <div class="sosyal">
+        <a href="https://wa.me/905350418048" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg></a>
+        <a href="https://www.instagram.com/dent.cadde/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a href="mailto:info@dentcadde.com" aria-label="E-posta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+      </div>
+    </div>
+    <div class="harita gor">
+      <iframe title="DentCadde konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3012.1843594012175!2d29.045720676613005!3d40.977443721322025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac7805a89d391%3A0x2af4422e6906cbc9!2zRmVuZXJ5b2x1LCBCYcSfZGF0IENhZC4gTm86MTM3LCAzNDcyNCBLYWTEsWvDtnkvxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1740561616747!5m2!1str!2str"></iframe>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="alt-bilgi">
+  <div class="kap">
+    <p class="dev">Gülüşünüz, <em>bizim işimiz.</em></p>
+    <div class="ust-sira">
+      <div>
+        <a class="marka" href="#basa"><img src="img/logo-isaret.png" alt="" width="44" height="39"><span><b>DENTCADDE</b><small>DİŞ ESTETİĞİ · ORTODONTİ</small></span></a>
+        <p style="color:var(--gri);max-width:380px;margin-top:18px;font-size:15px">Dr. Aslıhan Yıldırım Türkmen Diş Kliniği olarak, sağlıklı gülüşler için sizleri bekliyoruz. Sağlığınız bizim için her şeyden önemlidir.</p>
+      </div>
+      <div><h4>Tedaviler</h4><ul id="altTedavi"></ul></div>
+      <div><h4>Klinik</h4><ul>
+        <li><a href="#hekim">Hekimimiz</a></li><li><a href="#klinik">Hakkımızda</a></li><li><a href="#yorumlar">Yorumlar</a></li>
+        <li><a href="#blog">Blog</a></li><li><a href="#randevu">Randevu</a></li><li><a href="#iletisim">İletişim</a></li>
+        <li><a href="https://www.instagram.com/dent.cadde/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+    </div>
+    <div class="son">
+      <span>© <span id="yil">2026</span> DentCadde. Tüm hakları saklıdır.</span>
+      <a href="https://webizmo.tr" target="_blank" rel="noopener">Tasarım &amp; yazılım: Webizmo</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/905350418048" target="_blank" rel="noopener" aria-label="WhatsApp'tan yazın"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3Z"/></svg></a>
+
+<!-- çekmece -->
+<div class="perde" id="perde"></div>
+<aside class="cekmece" id="cekmece" role="dialog" aria-modal="true" aria-labelledby="cBaslik" aria-hidden="true">
+  <div class="cbas"><span class="etiket" id="cKat"></span><button id="cKapat" aria-label="Kapat">×</button></div>
+  <div class="govde" id="cGovde">
+    <h2 id="cBaslik"></h2>
+    <div class="meta" id="cMeta"></div>
+    <div class="okuma" id="cIcerik"></div>
+    <div class="ilgili" id="cIlgili"></div>
+  </div>
+  <div class="cson">
+    <a class="btn" href="#randevu" id="cRandevu">Bu tedavi için randevu alın</a>
+    <a class="btn bos" href="https://wa.me/905350418048" id="cWa" target="_blank" rel="noopener">WhatsApp'tan sorun</a>
+  </div>
+</aside>
+
+<!-- ışık kutusu -->
+<div class="isik" id="isik" role="dialog" aria-modal="true" aria-label="Klinik fotoğrafları">
+  <button class="k" id="iKapat" aria-label="Kapat">×</button>
+  <button class="o" id="iOnce" aria-label="Önceki">‹</button>
+  <img id="iResim" alt="">
+  <button class="s" id="iSonra" aria-label="Sonraki">›</button>
+  <span class="sayac" id="iSayac"></span>
+</div>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const D = window.DC, $ = s => document.querySelector(s);
+  const WA = '905350418048';
+  const katAd = Object.fromEntries(D.kategoriler.map(k => [k.id, k.ad]));
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  /* üst bar */
+  const ust = $('#ust');
+  const kaydir = () => ust.classList.toggle('dolu', scrollY > 20);
+  addEventListener('scroll', kaydir, {passive:true}); kaydir();
+  const mm = $('#mobilMenu');
+  const menu = ac => { mm.classList.toggle('acik', ac); mm.setAttribute('aria-hidden', !ac); document.body.style.overflow = ac ? 'hidden' : ''; };
+  $('#hamburger').onclick = () => menu(true);
+  $('#menuKapat').onclick = () => menu(false);
+  mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu(false)));
+
+  /* kayan şerit */
+  const serit = D.tedaviler.map(t => `<a href="#t/${t.slug}">${esc(t.baslik)}</a>`).join('');
+  $('#serit').innerHTML = serit + serit;
+
+  /* sekmeler + kartlar */
+  const sek = [{id:'hepsi', ad:'Tümü'}, ...D.kategoriler];
+  $('#sekmeler').innerHTML = sek.map((k,i) => {
+    const n = k.id === 'hepsi' ? D.tedaviler.length : D.tedaviler.filter(t => t.kat === k.id).length;
+    return `<button role="tab" data-k="${k.id}" class="${i?'':'aktif'}" aria-selected="${!i}">${k.ad}<sup>${n}</sup></button>`;
+  }).join('');
+  $('#kartlar').innerHTML = D.tedaviler.map((t,i) => `
+    <button class="kart gor" data-kat="${t.kat}" data-slug="${t.slug}">
+      <span class="no">${String(i+1).padStart(2,'0')}</span>
+      <span class="kat">${katAd[t.kat]}</span>
+      <h3>${esc(t.baslik)}</h3>
+      <p>${esc(t.ozet)}</p>
+      <span class="alt"><span>Detaylı bilgi · ${t.dk} dk</span><span class="ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+    </button>`).join('');
+  $('#sekmeler').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    document.querySelectorAll('#sekmeler button').forEach(x => { x.classList.toggle('aktif', x === b); x.setAttribute('aria-selected', x === b); });
+    document.querySelectorAll('.kart').forEach(k => k.hidden = !(b.dataset.k === 'hepsi' || k.dataset.kat === b.dataset.k));
+  });
+  $('#kartlar').addEventListener('click', e => { const k = e.target.closest('.kart'); if (k) location.hash = 't/' + k.dataset.slug; });
+
+  /* form tedavi listesi + alt bilgi */
+  $('#tedavi').insertAdjacentHTML('beforeend', D.tedaviler.map(t => `<option>${esc(t.baslik)}</option>`).join(''));
+  $('#altTedavi').innerHTML = D.tedaviler.slice(0,7).map(t => `<li><a href="#t/${t.slug}">${esc(t.baslik)}</a></li>`).join('') + '<li><a href="#tedaviler">Tüm tedaviler →</a></li>';
+
+  /* blog */
+  const tarihTR = s => new Date(s).toLocaleDateString('tr-TR', {day:'numeric', month:'long', year:'numeric'});
+  $('#yazilar').innerHTML = D.yazilar.map((y,i) => `
+    <button class="yazi gor" data-slug="${y.slug}">
+      <img src="${i ? 'img/galeri/k12.jpg' : 'img/blog.jpg'}" alt="" loading="lazy">
+      <span class="ic"><time>${tarihTR(y.tarih)}</time><h3>${esc(y.baslik)}</h3><p>${esc(y.ozet)}</p><span class="devam">Yazıyı oku →</span></span>
+    </button>`).join('');
+  $('#yazilar').addEventListener('click', e => { const y = e.target.closest('.yazi'); if (y) location.hash = 'b/' + y.dataset.slug; });
+
+  /* çekmece */
+  const ck = $('#cekmece'), pd = $('#perde');
+  let sonOdak = null;
+  const ac = (tur, slug) => {
+    const liste = tur === 't' ? D.tedaviler : D.yazilar;
+    const o = liste.find(x => x.slug === slug); if (!o) return;
+    sonOdak = document.activeElement;
+    $('#cKat').textContent = tur === 't' ? katAd[o.kat] : 'Blog';
+    $('#cBaslik').textContent = o.baslik;
+    $('#cMeta').innerHTML = tur === 't'
+      ? `<span>Dr. Aslıhan Yıldırım Türkmen Kliniği</span><span>· ${o.dk} dk okuma</span>`
+      : `<span>${tarihTR(o.tarih)}</span><span>· DentCadde</span>`;
+    $('#cIcerik').innerHTML = o.html;
+    if (tur === 't') {
+      const ilgili = D.tedaviler.filter(x => x.kat === o.kat && x.slug !== slug);
+      $('#cIlgili').innerHTML = `<h6>${katAd[o.kat]} — diğer tedaviler</h6><div>${ilgili.map(x => `<button data-s="${x.slug}">${esc(x.baslik)}</button>`).join('')}</div>`;
+      $('#cRandevu').textContent = 'Bu tedavi için randevu alın';
+      $('#cRandevu').dataset.tedavi = o.baslik;
+    } else { $('#cIlgili').innerHTML = ''; $('#cRandevu').textContent = 'Randevu alın'; delete $('#cRandevu').dataset.tedavi; }
+    $('#cWa').href = `https://wa.me/${WA}?text=${encodeURIComponent('Merhaba, ' + o.baslik + ' hakkında bilgi almak istiyorum.')}`;
+    $('#cGovde').scrollTop = 0;
+    ck.classList.add('acik'); pd.classList.add('acik'); ck.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => $('#cKapat').focus({preventScroll:true}), 50);
+  };
+  const kapat = (hashTemizle = true) => {
+    ck.classList.remove('acik'); pd.classList.remove('acik'); ck.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (hashTemizle && /^#(t|b)\//.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+    if (sonOdak) sonOdak.focus({preventScroll:true});
+  };
+  $('#cIlgili').addEventListener('click', e => { const b = e.target.closest('button'); if (b) location.hash = 't/' + b.dataset.s; });
+  $('#cKapat').onclick = () => kapat(); pd.onclick = () => kapat();
+  $('#cRandevu').addEventListener('click', e => {
+    e.preventDefault();
+    const t = e.currentTarget.dataset.tedavi;
+    kapat();
+    if (t) $('#tedavi').value = t;
+    $('#randevu').scrollIntoView({behavior:'smooth'});
+    setTimeout(() => $('#ad').focus({preventScroll:true}), 700);
+  });
+  const rota = () => {
+    const m = location.hash.match(/^#(t|b)\/(.+)$/);
+    if (m) ac(m[1], decodeURIComponent(m[2]));
+    else if (ck.classList.contains('acik')) kapat(false);
+  };
+  addEventListener('hashchange', rota);
+
+  /* galeri + ışık kutusu */
+  const foto = Array.from({length:44}, (_,i) => `img/galeri/k${String(i+1).padStart(2,'0')}.jpg`);
+  const ILK = 12;
+  $('#galeri').innerHTML = foto.map((f,i) => `<button data-g="${i}" class="${i < ILK ? '' : 'gizli'}" aria-label="Klinik fotoğrafı ${i+1}"><img src="${f}" alt="" loading="lazy"></button>`).join('');
+  $('#galeriAc').onclick = e => {
+    document.querySelectorAll('#galeri .gizli').forEach(b => b.classList.remove('gizli'));
+    e.currentTarget.parentElement.remove();
+  };
+  const ik = $('#isik'); let gi = 0;
+  const goster = i => { gi = (i + foto.length) % foto.length; $('#iResim').src = foto[gi]; $('#iSayac').textContent = `${gi+1} / ${foto.length}`; };
+  const isikAc = i => { goster(i); ik.classList.add('acik'); document.body.style.overflow = 'hidden'; $('#iKapat').focus(); };
+  const isikKapat = () => { ik.classList.remove('acik'); document.body.style.overflow = ''; };
+  document.addEventListener('click', e => { const g = e.target.closest('[data-g]'); if (g) isikAc(+g.dataset.g); });
+  $('#iKapat').onclick = isikKapat; $('#iOnce').onclick = () => goster(gi-1); $('#iSonra').onclick = () => goster(gi+1);
+  ik.addEventListener('click', e => { if (e.target === ik) isikKapat(); });
+  let dx = 0; ik.addEventListener('touchstart', e => dx = e.touches[0].clientX, {passive:true});
+  ik.addEventListener('touchend', e => { const f = e.changedTouches[0].clientX - dx; if (Math.abs(f) > 50) goster(gi + (f < 0 ? 1 : -1)); });
+  addEventListener('keydown', e => {
+    if (ik.classList.contains('acik')) { if (e.key === 'Escape') isikKapat(); if (e.key === 'ArrowLeft') goster(gi-1); if (e.key === 'ArrowRight') goster(gi+1); return; }
+    if (e.key === 'Escape') { if (ck.classList.contains('acik')) kapat(); if (mm.classList.contains('acik')) menu(false); }
+  });
+
+  /* form → WhatsApp */
+  $('#form').addEventListener('submit', e => {
+    e.preventDefault();
+    const ad = $('#ad'), tel = $('#tel');
+    const adOk = ad.value.trim().length > 1, telOk = tel.value.replace(/\D/g,'').length >= 10;
+    ad.parentElement.classList.toggle('yanlis', !adOk); tel.parentElement.classList.toggle('yanlis', !telOk);
+    if (!adOk) return ad.focus(); if (!telOk) return tel.focus();
+    const f = new FormData(e.target);
+    const metin = ['Merhaba, web sitesinden randevu talebi:', `Ad Soyad: ${f.get('ad').trim()}`, `Telefon: ${f.get('tel').trim()}`,
+      `Tedavi: ${f.get('tedavi') || 'Muayene / emin değilim'}`, `Ulaşılacak zaman: ${f.get('zaman')}`,
+      f.get('mesaj').trim() ? `Mesaj: ${f.get('mesaj').trim()}` : ''].filter(Boolean).join('\n');
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(metin)}`, '_blank', 'noopener');
+  });
+
+  /* görünme animasyonu */
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('gorundu'); io.unobserve(x.target); } }), {rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.gor').forEach((el,i) => { el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); });
+
+  $('#yil').textContent = new Date().getFullYear();
+  rota();
+})();
+</script>
+</body>
+</html>
